@@ -37,11 +37,7 @@ export default defineComponent({
         password: this.user_password,
       };
 
-      this.$axios.put(URL, data);
-
-      setTimeout(() => {
-        this.goToHome();
-      }, 2000);
+      this.$axios.put(URL, data).catch((error) => this.goToHome());
     },
 
     goToHome() {
