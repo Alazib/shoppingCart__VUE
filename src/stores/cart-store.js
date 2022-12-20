@@ -2,16 +2,17 @@ import { defineStore } from "pinia";
 
 export const useCart = defineStore("cart", {
   state: () => ({
-    name: "",
-    email: "",
-    password: "",
+    cart_products: [],
   }),
+
   getters: {
-    doubleCount: (state) => state.counter * 2,
+    checkCart: (state) => state.cart_products,
   },
+
   actions: {
-    increment() {
-      this.counter++;
+    addToCart(product) {
+      this.cart_products.push(product);
+      console.log(this.cart_products);
     },
   },
 });

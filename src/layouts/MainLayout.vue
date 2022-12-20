@@ -13,7 +13,10 @@
 
         <q-toolbar-title> Quasar Shopping Cart </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div class="cart">
+          <span>{{ number_items }} products</span>
+          <img src="../images/Cart.png" />
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -99,6 +102,12 @@ export default defineComponent({
     // EssentialLink
   },
 
+  data() {
+    return {
+      number_items: 0,
+    };
+  },
+
   setup() {
     const leftDrawerOpen = ref(false);
 
@@ -112,3 +121,15 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+img {
+  height: 50px;
+  widows: 50px;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+}
+</style>
