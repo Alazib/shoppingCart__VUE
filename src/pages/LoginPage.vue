@@ -1,14 +1,14 @@
 <template>
   <div class="login">
-    <form @submit="handleOnSubmit()">
+    <form @submit="handleOnSubmit($event)">
       <div class="input email-input">
         <label for="email">Email</label>
-        <input type="email" id="email" v-model="user_email" />
+        <input type="email" id="email" v-model="user_email" required />
       </div>
 
       <div class="input password-input">
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="user_password" />
+        <input type="password" id="password" v-model="user_password" required />
       </div>
 
       <button type="onSubmit">LOGIN</button>
@@ -21,7 +21,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "LoginPage",
-
   data() {
     return {
       user_email: "",
@@ -38,7 +37,11 @@ export default defineComponent({
         password: this.user_password,
       };
 
-      this.$axios.put(URL, data);
+      this.$axios.put(URL, data).catch((error) => this.goToHome());
+    },
+
+    goToHome() {
+      this.$router.push("/home");
     },
   },
 });
