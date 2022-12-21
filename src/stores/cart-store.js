@@ -12,7 +12,11 @@ export const useCart = defineStore("cart", {
   actions: {
     addToCart(product) {
       this.cart_products.push(product);
-      console.log(this.cart_products);
+    },
+    deleteFromCart(id) {
+      this.cart_products = this.cart_products.filter((product) => {
+        return id != product.id;
+      });
     },
   },
 });
