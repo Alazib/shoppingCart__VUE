@@ -13,8 +13,8 @@
 
         <q-toolbar-title> Quasar Shopping Cart </q-toolbar-title>
 
-        <div class="cart">
-          <span>{{ number_items }} products</span>
+        <div class="cart" @click="goToCart()">
+          <span>{{ store.checkCart.length }} products</span>
           <img src="../images/Cart.png" />
         </div>
       </q-toolbar>
@@ -49,6 +49,7 @@
 <script>
 import { defineComponent, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
+import { useCart } from "src/stores/cart-store";
 
 const linksList = [
   {
@@ -105,7 +106,14 @@ export default defineComponent({
   data() {
     return {
       number_items: 0,
+      store: useCart(),
     };
+  },
+
+  methods: {
+    goToCart() {
+      this.$router.push("/cart");
+    },
   },
 
   setup() {

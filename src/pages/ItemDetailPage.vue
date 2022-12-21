@@ -19,9 +19,8 @@
       </div>
     </div>
     <button @click="add()">Add to cart</button>
-    <button @click="checkCart()">Check cart</button>
+    <button @click="goToHome()">Back to home</button>
   </div>
-  {{ store.checkCart }}
 </template>
 
 <script>
@@ -51,6 +50,9 @@ export default defineComponent({
   methods: {
     add() {
       this.store.addToCart(this.product);
+    },
+    goToHome() {
+      this.$router.push("/home");
     },
   },
 });
