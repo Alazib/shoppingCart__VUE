@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <form @submit="handleOnSubmit($event)">
+    <form @submit.prevent="handleOnSubmit()">
       <div class="input email-input">
         <label for="email">Email</label>
         <input type="email" id="email" v-model="user_email" required />
@@ -10,17 +10,19 @@
         <label for="password">Password</label>
         <input type="password" id="password" v-model="user_password" required />
       </div>
-
-      <button type="onSubmit">LOGIN</button>
+      <ButtonComponent :title="'Login'" @goToHome="goToHome()">
+      </ButtonComponent>
     </form>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import ButtonComponent from "components/ButtonComponent.vue";
 
 export default defineComponent({
   name: "LoginPage",
+  components: { ButtonComponent },
   data() {
     return {
       user_email: "",

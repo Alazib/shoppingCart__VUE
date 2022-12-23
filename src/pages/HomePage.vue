@@ -14,16 +14,32 @@
         </div>
       </div>
     </div>
-    <button @click="goToLogin()">Login Page</button>
+    <ButtonComponent
+      :title="'Login Page'"
+      @goToLogin="goToLogin()"
+    ></ButtonComponent>
+
+    <!-- Las propiedades las pasa el padre (HomePage.vue) al hijo (ButtonComponente.vue). Hay un flujo de datos
+    del padre al hijo -->
+
+    <!-- En los eventos no hay un flujo de datos. Primero creo el evento propio (@loquseaEl)
+    al que le paso una función y dicho evento se queda escuchando como si fuera una antena de radio (el
+    padre, HomePage se queda escuchando)
+    Y ¿que escucha? la emisión de ese mismo evento por parte del hijo. El hijo tiene un @click que
+    al hacer click emite el evento que estará escuchando el padre.
+    En el padre:  $event es el segundo parámetro del $emit del botón hijo (en
+    este caso True)) -->
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
 import { api } from "src/boot/axios";
+import ButtonComponent from "components/ButtonComponent.vue";
 
 export default defineComponent({
   name: "HomePage",
+  components: { ButtonComponent },
 
   data() {
     return {

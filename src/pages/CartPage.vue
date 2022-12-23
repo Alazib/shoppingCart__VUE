@@ -8,16 +8,21 @@
           <p><b>Brand: </b> {{ product.brand }}</p>
           <p><b>Price: </b>{{ product.price }} Euros</p>
         </div>
-        <button class="discard" @click="discardProduct(product.id)">
-          Discard
-        </button>
+        <ButtonComponent
+          :title="'Discard'"
+          @discardProduct="discardProduct(product.id)"
+          :class="'discard'"
+        ></ButtonComponent>
       </li>
     </ol>
     <div class="resume">
       <p>Total products: {{ products_selected.length }}</p>
       <p>Total price: {{ totalPrice() }} Euros</p>
-      <button>Buy</button>
-      <button @click="goToHome()">Continue shopping</button>
+      <ButtonComponent :title="'Buy'"></ButtonComponent>
+      <ButtonComponent
+        :title="'Continue shopping'"
+        @continueShopping="goToHome()"
+      ></ButtonComponent>
     </div>
   </div>
 </template>
@@ -25,10 +30,11 @@
 <script>
 import { defineComponent } from "vue";
 import { useCart } from "src/stores/cart-store";
+import ButtonComponent from "src/components/ButtonComponent.vue";
 
 export default defineComponent({
   name: "CartPage",
-
+  components: { ButtonComponent },
   data() {
     return {
       store: useCart(),
@@ -102,10 +108,5 @@ p:nth-child(3) {
   padding: 30px;
   border-radius: 20px;
   align-self: center;
-}
-
-.discard {
-  height: fit-content;
-  align-self: flex-end;
 }
 </style>

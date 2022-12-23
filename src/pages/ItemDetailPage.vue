@@ -18,8 +18,14 @@
         </span>
       </div>
     </div>
-    <button @click="add()">Add to cart</button>
-    <button @click="goToHome()">Back to home</button>
+    <ButtonComponent
+      :title="'Add to cart'"
+      @addToCart="add()"
+    ></ButtonComponent>
+    <ButtonComponent
+      :title="'Back to home'"
+      @addToCart="goToHome()"
+    ></ButtonComponent>
   </div>
 </template>
 
@@ -27,9 +33,11 @@
 import { defineComponent } from "vue";
 import { api } from "src/boot/axios";
 import { useCart } from "src/stores/cart-store";
+import ButtonComponent from "components/ButtonComponent.vue";
 
 export default defineComponent({
   name: "ItemDetail",
+  components: { ButtonComponent },
 
   data() {
     return {
