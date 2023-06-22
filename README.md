@@ -1,6 +1,5 @@
 # Quasar App (shoppingcart)
 
-A Quasar Project
 
 ## Install the dependencies
 ```bash
@@ -37,5 +36,3 @@ npm run format
 quasar build
 ```
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
